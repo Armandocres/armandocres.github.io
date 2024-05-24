@@ -39,3 +39,11 @@ body,
 				border-right: white dashed 5px;
 				height: 100%;
 			}
+
+			.score {
+				color: white;
+				position: absolute;
+				top: 2%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}

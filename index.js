@@ -1,7 +1,9 @@
 let game = function () {
   let time = 30;
-  let movement = 20;
+  let movement = 15;
   let movementBar = 20;
+  let score1;
+  let score2;
   let width = document.documentElement.clientWidth - movement;
   let height = document.documentElement.clientHeight - movement;
   let controlGame;
@@ -26,9 +28,21 @@ let game = function () {
     player2.keyCode = null;
   }
 
-  function stop() {
-    clearInterval(controlGame);
-    document.body.style.backgroundColor = 'red';
+  function restart() {
+    init();
+    start();
+  }
+
+  function stop(flag) {
+    if (flag === 'gano 1') {
+      clearInterval(controlGame);
+      alert('Gano el jugador 1');
+      restart();
+    } else {
+      clearInterval(controlGame);
+      alert('Gano el jugador 2');
+      restart();
+    }
   }
 
   function play() {
@@ -39,10 +53,18 @@ let game = function () {
 
   function checkIfLost() {
     if (ball.offsetLeft >= width) {
-      stop();
+      score1 = document.getElementById('score');
+      score1.innerHTML = parseInt(score1.innerHTML) + 1;
+      flag = 'gano 1';
+      stop(flag);
+      return
     }
     if (ball.offsetLeft <= 0) {
-      stop();
+      score2 = document.getElementById('score2');
+      score2.innerHTML = parseInt(score2.innerHTML) + 1;
+      flag = 'gano 2';
+      stop(flag);
+      return
     }
   }
 
